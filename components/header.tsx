@@ -9,13 +9,14 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             {/* Logo da Bits Jr */}
-            <div className="h-10 flex items-center justify-center">
+            <div className="h-12 flex items-center justify-center">
               <Image 
                 src="/bits-branco.png" 
                 alt="Logo Bits Jr" 
-                width={45} 
-                height={45} 
+                width={55} 
+                height={55} 
                 className="object-contain"
+                priority
               />
             </div>
             <div>
