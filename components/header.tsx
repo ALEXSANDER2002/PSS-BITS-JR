@@ -11,7 +11,7 @@ export default function Header() {
             {/* Logo da Bits Jr */}
             <div className="h-10 flex items-center justify-center">
               <Image 
-                src="/logocfundo.png" 
+                src="/bits-branco.png" 
                 alt="Logo Bits Jr" 
                 width={45} 
                 height={45} 
