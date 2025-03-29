@@ -15,7 +15,7 @@ export default function WhatsAppButton({ texto = "Entrar no Grupo de WhatsApp", 
   return (
     <Button
       onClick={handleClick}
-      className="bg-green-600 hover:bg-green-500 text-white font-medium py-2 px-4 sm:px-6 rounded-full flex items-center gap-2 transition-all transform hover:scale-105 hover:shadow-lg shadow-md text-xs sm:text-sm relative overflow-hidden group"
+      className="bg-green-600 hover:bg-green-500 text-white font-medium py-2 px-6 rounded-full flex items-center gap-2 transition-all transform hover:scale-105 hover:shadow-lg shadow-md text-sm relative overflow-hidden group"
     >
       <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-green-500 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity"></span>
       <svg viewBox="0 0 24 24" width="20" height="20" fill="white" className="relative z-10">
