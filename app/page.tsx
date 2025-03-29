@@ -10,11 +10,6 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true)
-
-    // Adicione este comentário para instruir o usuário sobre como adicionar a logo
-    console.log(
-      "Para adicionar a logo da Bits Jr, substitua o placeholder no header.tsx por uma tag <Image> ou <img> com a imagem da logo.",
-    )
   }, [])
 
   const candidatos = {
