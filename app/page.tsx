@@ -31,7 +31,7 @@ export default function Home() {
       inscritos: 10,
     },
     eventos: {
-      vagas: 3,
+      vagas: 2,
       inscritos: 6,
     }
   };
@@ -84,7 +84,6 @@ export default function Home() {
     eventos: [
       "Emanuel Oliveira Santos",
       "Gustavo Bastos do Amaral",
-      "Leonardo Farias da Silva",
     ],
   }
 
