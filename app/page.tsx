@@ -15,11 +15,11 @@ export default function Home() {
   // Dados estatísticos do processo seletivo
   const estatisticas = {
     gestao: {
-      vagas: 9,
+      vagas: 8,
       inscritos: 12,
     },
     projetos: {
-      vagas: 10,
+      vagas: 12,
       inscritos: 15,
     },
     comercial: {
@@ -27,17 +27,17 @@ export default function Home() {
       inscritos: 8,
     },
     inovacao: {
-      vagas: 7,
+      vagas: 8,
       inscritos: 10,
     },
     eventos: {
-      vagas: 2,
+      vagas: 3,
       inscritos: 6,
     }
   };
 
   // Aqui forçamos o total, em caso de inconsistência nas somas individuais
-  const TOTAL_VAGAS = 32;
+  const TOTAL_VAGAS = 35;
   const TOTAL_INSCRITOS = 51;
 
   const candidatos = {
@@ -62,6 +62,8 @@ export default function Home() {
       "João Marcos Chaves da Luz",
       "Carlos Eduardo Rocha Lopes",
       "Yasmim Magalhães Barreiros",
+      "Frank Fábio Santos da Silva",
+      "Luan Pereira Diniz",
     ],
     comercial: [
       "Reyane Thainah Lemos Barbosa",
@@ -77,6 +79,7 @@ export default function Home() {
       "Matheus Guimarães Silva",
       "Pedro Henrique Silva dos Santos",
       "Luiz Antônio de Souza Machado",
+      "Felipe Mattei Ximenes",
     ],
     eventos: [
       "Emanuel Oliveira Santos",
