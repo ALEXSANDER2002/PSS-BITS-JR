@@ -2,7 +2,7 @@
 
 import Header from "@/components/header"
 import CandidateList from "@/components/candidate-list"
-import { Briefcase, Code, ShoppingBag, Lightbulb, Calendar } from "lucide-react"
+import { Briefcase, Code, ShoppingBag, Lightbulb, Calendar, ArrowDown, Trophy } from "lucide-react"
 import { useEffect, useState } from "react"
 
 export default function Home() {
@@ -11,6 +11,34 @@ export default function Home() {
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Dados estatísticos do processo seletivo
+  const estatisticas = {
+    gestao: {
+      vagas: 9,
+      inscritos: 12,
+    },
+    projetos: {
+      vagas: 10,
+      inscritos: 15,
+    },
+    comercial: {
+      vagas: 4,
+      inscritos: 8,
+    },
+    inovacao: {
+      vagas: 7,
+      inscritos: 10,
+    },
+    eventos: {
+      vagas: 2,
+      inscritos: 6,
+    }
+  };
+
+  // Aqui forçamos o total, em caso de inconsistência nas somas individuais
+  const TOTAL_VAGAS = 32;
+  const TOTAL_INSCRITOS = 51;
 
   const candidatos = {
     gestao: [
@@ -21,7 +49,6 @@ export default function Home() {
       "Elson da Silva Sousa",
       "Nalanda Vitória Silva Melo",
       "Pedro Henrique de Sousa Pinto",
-      "Carlos Eduardo Rocha Lopes",
       "Alana Brenda Pantoja dos Santos",
     ],
     projetos: [
@@ -33,15 +60,14 @@ export default function Home() {
       "Alessandro Gabriel Rodrigues De Miranda",
       "Gustavo Ribeiro da Silva",
       "João Marcos Chaves da Luz",
+      "Carlos Eduardo Rocha Lopes",
+      "Yasmim Magalhães Barreiros",
     ],
     comercial: [
       "Reyane Thainah Lemos Barbosa",
       "Andrya Almeida Silva",
       "Michelly Carvalho da Silva",
-      "Mateus Ronaldo Foro Costa",
-      "Welington Bernardo Salazar Alves",
       "Luiza Reis Alencar",
-      "Mariely Dauane Pereira Santos",
     ],
     inovacao: [
       "Walison de Sousa Costa",
@@ -49,30 +75,21 @@ export default function Home() {
       "Mateus de Almada Andrade",
       "João Gabriel Lourenço Rodrigues",
       "Matheus Guimarães Silva",
-      "Almerindo Cavalcante dos Santos Neto",
       "Pedro Henrique Silva dos Santos",
       "Luiz Antônio de Souza Machado",
-      "Deivid Silva da Conceição",
-      "Arthur Cobain Barreiros de Oliveira",
     ],
     eventos: [
       "Emanuel Oliveira Santos",
       "Gustavo Bastos do Amaral",
-      "Yasmim Magalhães Barreiros",
       "Leonardo Farias da Silva",
-      "Arthur Santos Gatti",
-      "Elibelde Belisario Ramos",
     ],
   }
 
-  // Links para os grupos de WhatsApp (substitua pelos links reais)
-  const whatsappLinks = {
-    gestao: "https://chat.whatsapp.com/JT3dbF0u1F30XpmrYrMdFU",
-    projetos: "https://chat.whatsapp.com/L4nm8wI4qMf0gxZ8m8mcKC",
-    comercial: "https://chat.whatsapp.com/FVMwwi0y4MCChKjQxPV5ZW",
-    inovacao: "https://chat.whatsapp.com/FiVNzqsL1LRIMzBGddBYvG",
-    eventos: "https://chat.whatsapp.com/HzaSQegqK7DJskgaHGQOWr",
-  }
+  // Cálculo de totais para o resumo - usamos as constantes definidas
+  const totalVagas = TOTAL_VAGAS;
+  const totalInscritos = TOTAL_INSCRITOS;
+  const totalAprovados = Object.values(candidatos).reduce((acc, curr) => acc + curr.length, 0);
+  const taxaAprovacaoGeral = ((totalAprovados / totalInscritos) * 100).toFixed(1);
 
   if (!mounted) {
     return null
@@ -92,59 +109,109 @@ export default function Home() {
       <div className="container mx-auto px-4 py-6 sm:py-12 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-4">Resultado Preliminar</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-4">Resultado Final</h1>
             <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mb-4 sm:mb-6 rounded-full"></div>
             <p className="text-base sm:text-lg text-gray-700">
-              Parabéns a todos os candidatos pré-selecionados para a Bits Jr!
+              Parabéns a todos os candidatos aprovados para a Bits Jr!
             </p>
           </div>
 
+          {/* Card de Resumo do Processo Seletivo */}
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-2xl shadow-xl p-4 sm:p-8 mb-8 sm:mb-10 border border-blue-200 overflow-hidden relative">
+            {/* Elementos decorativos */}
+            <div className="absolute -right-20 -top-20 w-60 h-60 bg-white/10 rounded-full blur-lg"></div>
+            <div className="absolute -left-20 -bottom-20 w-60 h-60 bg-indigo-400/10 rounded-full blur-lg"></div>
+            
+            <h2 className="text-xl sm:text-2xl font-bold mb-6 flex items-center gap-2 relative z-10">
+              <Trophy className="h-6 w-6 text-yellow-300" /> Resumo do Processo Seletivo
+            </h2>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 relative z-10">
+              <div className="bg-white/15 backdrop-blur-lg p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-colors hover:transform hover:scale-105 transition-transform duration-200">
+                <p className="text-xs text-blue-100 uppercase tracking-wider mb-2">Total de Vagas</p>
+                <p className="text-2xl font-bold flex items-end">
+                  {totalVagas}
+                  <span className="text-xs ml-1 text-blue-200 mb-1">vagas</span>
+                </p>
+              </div>
+              
+              <div className="bg-white/15 backdrop-blur-lg p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-colors hover:transform hover:scale-105 transition-transform duration-200">
+                <p className="text-xs text-blue-100 uppercase tracking-wider mb-2">Total de Inscritos</p>
+                <p className="text-2xl font-bold flex items-end">
+                  {totalInscritos}
+                  <span className="text-xs ml-1 text-blue-200 mb-1">candidatos</span>
+                </p>
+              </div>
+              
+              <div className="bg-white/15 backdrop-blur-lg p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-colors hover:transform hover:scale-105 transition-transform duration-200">
+                <p className="text-xs text-blue-100 uppercase tracking-wider mb-2">Total de Aprovados</p>
+                <p className="text-2xl font-bold flex items-end">
+                  {totalAprovados}
+                  <span className="text-xs ml-1 text-blue-200 mb-1">aprovados</span>
+                </p>
+              </div>
+              
+              <div className="bg-white/15 backdrop-blur-lg p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-colors hover:transform hover:scale-105 transition-transform duration-200">
+                <p className="text-xs text-blue-100 uppercase tracking-wider mb-2">Taxa de Aprovação</p>
+                <p className="text-2xl font-bold">{taxaAprovacaoGeral}%</p>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-4 sm:p-8 mb-8 sm:mb-12 border border-gray-100">
-            <p className="text-gray-700 mb-6 sm:mb-8 text-center text-sm sm:text-base">
-              Confira abaixo a lista por área e entre no grupo de WhatsApp correspondente para receber mais informações
-              sobre as próximas etapas.
+            <p className="text-gray-700 mb-6 sm:mb-8 text-center text-base sm:text-lg font-medium">
+              Confira abaixo a lista de aprovados por área.
             </p>
 
-            <div className="space-y-4 sm:space-y-8">
+            <div className="flex items-center justify-center mb-8 animate-bounce">
+              <ArrowDown className="h-6 w-6 text-blue-600" />
+            </div>
+
+            <div className="space-y-8 sm:space-y-12">
               <CandidateList
-                titulo="Candidatos Pré-selecionados para Gestão"
+                titulo="Candidatos Aprovados para Gestão"
                 candidatos={candidatos.gestao}
                 corFundo="bg-blue-50"
-                whatsappLink={whatsappLinks.gestao}
                 icone={<Briefcase className="h-5 w-5 text-blue-700" />}
+                vagas={estatisticas.gestao.vagas}
+                inscritos={estatisticas.gestao.inscritos}
               />
 
               <CandidateList
-                titulo="Candidatos Pré-selecionados para Projetos"
+                titulo="Candidatos Aprovados para Projetos"
                 candidatos={candidatos.projetos}
                 corFundo="bg-indigo-50"
-                whatsappLink={whatsappLinks.projetos}
                 icone={<Code className="h-5 w-5 text-indigo-700" />}
+                vagas={estatisticas.projetos.vagas}
+                inscritos={estatisticas.projetos.inscritos}
               />
 
               <CandidateList
-                titulo="Candidatos Pré-selecionados para Comercial"
+                titulo="Candidatos Aprovados para Comercial"
                 candidatos={candidatos.comercial}
                 corFundo="bg-purple-50"
-                whatsappLink={whatsappLinks.comercial}
                 icone={<ShoppingBag className="h-5 w-5 text-purple-700" />}
+                vagas={estatisticas.comercial.vagas}
+                inscritos={estatisticas.comercial.inscritos}
               />
 
               <CandidateList
-                titulo="Candidatos Pré-selecionados para Inovação"
+                titulo="Candidatos Aprovados para Inovação"
                 candidatos={candidatos.inovacao}
                 corFundo="bg-cyan-50"
                 descricao="(área de pesquisa de novas tecnologias, marketing digital e design)"
-                whatsappLink={whatsappLinks.inovacao}
                 icone={<Lightbulb className="h-5 w-5 text-cyan-700" />}
+                vagas={estatisticas.inovacao.vagas}
+                inscritos={estatisticas.inovacao.inscritos}
               />
 
               <CandidateList
-                titulo="Candidatos Pré-selecionados para Gestão de Eventos"
+                titulo="Candidatos Aprovados para Gestão de Eventos"
                 candidatos={candidatos.eventos}
                 corFundo="bg-teal-50"
-                whatsappLink={whatsappLinks.eventos}
                 icone={<Calendar className="h-5 w-5 text-teal-700" />}
+                vagas={estatisticas.eventos.vagas}
+                inscritos={estatisticas.eventos.inscritos}
               />
             </div>
           </div>
